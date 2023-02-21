@@ -3,5 +3,5 @@ export const Logos = {
 };
 
 export const Headers = {
-  ManchesterLarge: 'http://localhost:8080/files/af339b7d-4885-4db8-9f22-56cf85c1c181',
+  ManchesterLarge: 'https://i.guim.co.uk/img/media/5bb754ed0d06b8f8b251fcddfc713c2d4269b386/0_215_6720_4032/master/6720.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=48de81fd4443948570be120817bea202',
 };
