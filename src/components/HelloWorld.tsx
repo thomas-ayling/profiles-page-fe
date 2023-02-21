@@ -1,11 +1,14 @@
+import { Crc32c } from '@aws-crypto/crc32c';
 import React from 'react';
 import { Logos, Headers } from '../images';
-import { uploadFile } from '../services/FileService';
+import { useAppDispatch } from '../lib/store/hooks/hooks';
 
 const HelloWorld = () => {
+  const dispatch = useAppDispatch();
+
   const handleNewFile = (e: React.ChangeEvent<HTMLInputElement> | null) => {
     if (e?.target.files) {
-      uploadFile(e.target.files[0]);
+      dispatch(uploadFile(e.target.files[0]))
     }
   };
 

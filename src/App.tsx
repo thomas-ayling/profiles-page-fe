@@ -1,13 +1,16 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
 import HelloWorld from './components/HelloWorld';
-import { store } from './reducers';
+import { store } from './lib/store/store';
 
 function App() {
   return (
-    <React.StrictMode>
-      <HelloWorld />
-    </React.StrictMode>
+    <Provider store={store}>
+      <React.StrictMode>
+        <HelloWorld />
+      </React.StrictMode>
+    </Provider>
   );
 }
 
