@@ -1,9 +1,9 @@
 import { Crc32c } from '@aws-crypto/crc32c';
 import React, { useState } from 'react';
 import {  Headers } from '../images';
-import { MetadataType } from '../lib/services/types/FileServiceTypes';
+import { MetadataType } from '../lib/services/FileServiceTypes';
 import { useAppDispatch } from '../lib/store/hooks/hooks';
-import { uploadFile } from '../lib/services/fileService';
+import { uploadFile } from '../lib/services/FileService';
 
 const Homepage = () => {
   const [file, setFile] = useState<File>();

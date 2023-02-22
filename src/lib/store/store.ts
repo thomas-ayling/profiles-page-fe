@@ -1,5 +1,5 @@
 import { configureStore} from '@reduxjs/toolkit';
-import fileStatusReducer from './reducers/fileStatusSlice';
+import fileStatusReducer from './reducers/FileStatusSlice';
 
 export const store = configureStore({
   reducer: {

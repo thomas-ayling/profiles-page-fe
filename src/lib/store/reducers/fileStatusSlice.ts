@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MetadataType } from '../../../components/HelloWorldTypes';
+import { MetadataType } from '../../services/FileServiceTypes';
 
 import { RootState } from '../store';
 

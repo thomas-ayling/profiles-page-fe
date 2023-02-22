@@ -1,8 +1,8 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { setError, setSuccess } from '../store/reducers/fileStatusSlice';
-import { MetadataType } from './types/FileServiceTypes';
+import { setError, setSuccess } from '../store/reducers/FileStatusSlice';
+import { MetadataType } from './FileServiceTypes';
 
 export const uploadFile = (metadata: MetadataType, content: Uint8Array) => {
   return async (dispatch: Dispatch) => {
