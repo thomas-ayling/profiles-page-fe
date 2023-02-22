@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MetadataType } from '../../services/FileServiceTypes';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 
@@ -22,49 +21,6 @@ const initialState: FileStatusType = {
   response: null,
 };
 
-
-export const getPhotos = createAsyncThunk("getPhotos/fetch", async (thunkAPI) => {
-  const response = await fetch("http://localhost:8080/files/", {
-      method: "GET"
-  });
-  const data = response.json()
-  return data
-})
-
-export const uploadPhoto = createAsyncThunk("postPhoto/fetch", async (myData: {metadata: MetadataType, content: Uint8Array}) => {
-  console.log("uploadPhotoReducer")
-  const { metadata, content } = myData
-  const headers = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Private-Network': 'true',
-    },
-  };
-
-  headers.headers['Content-Type'] = 'application/json';
-  const response = await fetch("http://localhost:8080/files/", {
-      method: "POST",
-      headers: headers.headers,
-      body: JSON.stringify({
-        metadata
-      })
-  });
-  const data = await response.json()
-  headers.headers['Content-Type'] = data.type;
-  const innerResponse = await fetch(data.headers.location, {
-    method: "PUT",
-    headers: headers.headers,
-    body: JSON.stringify({
-      content
-    })
-  })
-  const finalData = await innerResponse.json()
-  return finalData
-})
-
 export const fileStatusSlice = createSlice({
   name: 'fileStatus',
   initialState,
@@ -83,14 +39,6 @@ export const fileStatusSlice = createSlice({
       state.response = action.payload.response ?? null;
     },
   },
-  extraReducers:(builder) => {
-    builder.addCase(uploadPhoto.fulfilled, (state, action) =>{
-      state.error = false;
-      state.errorStatus = null;
-      state.success = true;
-      state.response = action.payload;
-  });
-  }
 });
 
 export const { setError, setSuccess } = fileStatusSlice.actions;
