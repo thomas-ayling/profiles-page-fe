@@ -1,17 +1,43 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @responsive {
+    .text-shadow {
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .text-shadow-md {
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .text-shadow-lg {
+      text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .text-shadow-none {
+      text-shadow: none;
+    }
+  }
+}
+
+@layer components {
+  .navlink-active {
+    @apply text-zinc-50 text-shadow font-bold
+  }
+  .navlink {
+    @apply hover:navlink-active text-zinc-300 hover:text-shadow font-bold
+  }
+}

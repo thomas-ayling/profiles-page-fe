@@ -1,16 +1,19 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import HelloWorld from './components/HelloWorld';
-import { store } from './lib/store/store';
+import Homepage from './components/Homepage';
+import Navbar from './components/Navbar';
+import Routes from './components/Routes';
 
 function App() {
   return (
-    <Provider store={store}>
-      <React.StrictMode>
-        <HelloWorld />
-      </React.StrictMode>
-    </Provider>
+    <>
+      <Router>
+        <Navbar />
+        <Routes />
+        <Homepage />
+      </Router>
+    </>
   );
 }
 
