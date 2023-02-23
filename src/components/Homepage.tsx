@@ -1,12 +1,29 @@
 import { Crc32c } from '@aws-crypto/crc32c';
-import React, { useState } from 'react';
-import {  Headers } from '../images';
+import React, { useEffect, useState } from 'react';
+import { Headers } from '../images';
 import { MetadataType } from '../lib/services/FileServiceTypes';
-import { useAppDispatch } from '../lib/store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../lib/store/hooks/hooks';
 import { uploadFile } from '../lib/services/FileService';
+import { toast } from 'react-toastify';
+import { resetFileStatus, selectFileStatus } from '../lib/store/reducers/FileStatusSlice';
 
 const Homepage = () => {
   const [file, setFile] = useState<File>();
+
+  const status = useAppSelector(selectFileStatus);
+  useEffect(() => {
+    if (status.error) {
+      toast.error(`${status.errorStatus?.message} status ${status.errorStatus?.message}`);
+    }
+    if (status.success) {
+      toast.success(`${status.response}`);
+    }
+    return () => {
+      if (status.error || status.success) {
+        dispatch(resetFileStatus());
+      }
+    };
+  }, [status]);
 
   const dispatch = useAppDispatch();
 
@@ -34,22 +51,23 @@ const Homepage = () => {
       };
 
       reader.onerror = (e) => {
-        // TODO: Dispatch file reader error
-        // dispatch()
+        toast.error('Error reading file data.');
       };
+      
       reader.readAsArrayBuffer(file);
     }
   };
 
   return (
-    <div>
+    <div className='flex flex-col items-center'>
       <h1 className='text-3xl font-bold underline text-slate-700'>Welcome</h1>
-      <div className='flex flex-col justify-around w-1/6 h-40'>
+      <div className='flex flex-col items-center justify-around w-1/6 h-40'>
         <label htmlFor='myfile'>Select a file:</label>
-        <input type='file' id='myfile' name='myfile' onChange={(e) => handleNewFile(e)} />
+        <input className='w-56 overflow-scroll' type='file' id='myfile' name='myfile' onChange={(e) => handleNewFile(e)} />
         <button className='w-1/2 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={handleUpload}>
           Upload
         </button>
+        <button onClick={() => toast.success('Woww', { theme: 'colored' })}>Toast</button>
       </div>
       {/* <img src={Logos.LogoSmall} /> */}
       <img alt='Manchester at night' src={Headers.ManchesterLarge} />
