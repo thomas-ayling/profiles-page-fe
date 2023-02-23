@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../assets/Logo.svg';
-import { BsPersonFill } from 'react-icons/bs';
+import Logo from '../../assets/Logo.svg';
+import AccountIcon from './AccountIcon';
 
 const Navbar = () => {
   return (
@@ -35,13 +35,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <div className='flex items-center justify-end '>
-        <Link to='account'>
-          <div className='p-2 transition duration-500 rounded-full w-11 h-11 bg-zinc-700 hover:bg-zinc-800'>
-            <BsPersonFill color='white' className='w-auto h-full fg-white' />
-          </div>
-        </Link>
-      </div>
+      <AccountIcon />
     </nav>
   );
 };

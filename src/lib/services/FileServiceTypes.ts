@@ -1,7 +1,7 @@
 export interface MetadataType {
-    name?: string;
-    type?: string;
-    size?: number;
+    name: string;
+    type: string;
+    size: number;
     crc: number;
   }
   

@@ -17,20 +17,31 @@ export const uploadFile = (metadata: MetadataType, content: Uint8Array) => {
       },
     };
 
-    try {
-      const metadataResponse = await axios.post(baseUrl, metadata, headers);
-      await axios.put(metadataResponse.headers.location, content, headers);
-      dispatch(
-        setSuccess({
-          response: { message: metadata.name + ' uploaded successfuly and available at ' + metadataResponse.headers.location },
-        })
-      );
-    } catch (error) {
+    const metadataResponse = await axios.post(baseUrl, metadata, headers).catch((err) => {
       dispatch(
         setError({
-          errorStatus: { message: 'There was an error saving this file', error: error },
+          errorStatus: { status: err.status, message: err.message },
         })
       );
+    });
+    if (metadataResponse) {
+      headers.headers['Content-Type'] = metadata.type;
+      await axios
+        .put(metadataResponse.headers.location, content, headers)
+        .then(() =>
+          dispatch(
+            setSuccess({
+              response: { fileName: metadata.name, fileLocation: metadataResponse.headers.location },
+            })
+          )
+        )
+        .catch((err) =>
+          dispatch(
+            setError({
+              errorStatus: { status: err.status, message: err.message },
+            })
+          )
+        );
     }
   };
 };
