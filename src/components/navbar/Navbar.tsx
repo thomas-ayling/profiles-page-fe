@@ -1,18 +1,12 @@
 import React from 'react';
+import { BsPersonFill } from 'react-icons/bs';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../../assets/Logo.svg';
-import AccountIcon from './AccountIcon';
+import Logo from '../shared/Logo';
 
 const Navbar = () => {
   return (
     <nav className='grid w-screen h-20 grid-cols-3 p-4 justify-evenly bg-zinc-600'>
-      <div className='flex items-center justify-start'>
-        <Link to='/'>
-          <div className='w-40 h-full p-1 '>
-            <img src={Logo} alt='logo' className='h-full' />
-          </div>
-        </Link>
-      </div>
+      <Logo/>
       <ul className='flex items-center justify-center gap-5'>
         <li>
           <NavLink to='/' className={({ isActive }) => (isActive ? 'navlink-active' : 'navlink')}>
@@ -35,7 +29,14 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <AccountIcon />
+      <div className='flex items-center justify-end '>
+        <Link to='account'>
+          <div className='flex items-center justify-around p-2 transition duration-500 rounded-full w-fit h-11 bg-zinc-600 hover:bg-zinc-700'>
+            <span className='mx-2 font-bold text-white'>Sign in</span>
+            <BsPersonFill color='white' className='w-auto h-full fg-white' />
+          </div>
+        </Link>
+      </div>
     </nav>
   );
 };

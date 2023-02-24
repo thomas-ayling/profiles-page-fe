@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Routes = () => {
+const Profile = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Routes = () => {
   )
 }
 
-export default Routes
+export default Profile

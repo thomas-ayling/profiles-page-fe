@@ -16,14 +16,25 @@ const Homepage = () => {
       toast.error(`${status.errorStatus?.message} status ${status.errorStatus?.message}`);
     }
     if (status.success) {
-      toast.success(`${status.response}`);
+      const message = (
+        <div>
+          <p>{status.response?.fileName} successfuly saved.</p>
+          <hr className='my-2' />
+          <button type='button' className='underline hover:text-white/75 active:text-white/50 focus:text-white/50' onClick={() => navigator.clipboard.writeText(status.response?.fileLocation ?? '')}>
+            Copy URL
+          </button>
+        </div>
+      );
+      toast.success(message, {
+        autoClose: 10000,
+      });
     }
     return () => {
       if (status.error || status.success) {
         dispatch(resetFileStatus());
       }
     };
-  }, [status]);
+  }, [status]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const dispatch = useAppDispatch();
 
@@ -53,7 +64,7 @@ const Homepage = () => {
       reader.onerror = (e) => {
         toast.error('Error reading file data.');
       };
-      
+
       reader.readAsArrayBuffer(file);
     }
   };
@@ -70,6 +81,7 @@ const Homepage = () => {
         <button onClick={() => toast.success('Woww', { theme: 'colored' })}>Toast</button>
       </div>
       {/* <img src={Logos.LogoSmall} /> */}
+      <img alt='Manchester at night' src={Headers.ManchesterLarge} />
       <img alt='Manchester at night' src={Headers.ManchesterLarge} />
     </div>
   );
