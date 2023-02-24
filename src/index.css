@@ -35,9 +35,27 @@ code {
 
 @layer components {
   .navlink-active {
-    @apply text-zinc-50 text-shadow font-bold
+    @apply font-bold text-zinc-50 text-shadow;
   }
   .navlink {
-    @apply hover:navlink-active text-zinc-300 hover:text-shadow font-bold
+    @apply font-bold hover:navlink-active text-zinc-300 hover:text-shadow;
+  }
+  .profiles-header-contact-details {
+    @apply flex items-center justify-between w-full;
+  }
+  .profiles-header-summary-item {
+    @apply flex flex-col w-full text-center;
+  }
+  .profiles-header-summary-item-right {
+    @apply border-l-2 profiles-header-summary-item border-white/10;
+  }
+  .profiles-header-summary-item-title {
+    @apply font-bold text-zinc-50;
+  }
+  .markdown-component li {
+    @apply list-disc ml-4
+  }
+  hr {
+    @apply border-black/10
   }
 }

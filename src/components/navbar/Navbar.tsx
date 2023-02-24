@@ -5,7 +5,7 @@ import Logo from '../shared/Logo';
 
 const Navbar = () => {
   return (
-    <nav className='grid w-screen h-20 grid-cols-3 p-4 justify-evenly bg-zinc-600'>
+    <nav className='grid w-screen h-20 grid-cols-3 p-4 border-b-2 justify-evenly bg-zinc-600 border-b-white/10'>
       <Logo/>
       <ul className='flex items-center justify-center gap-5'>
         <li>

@@ -8,7 +8,7 @@ const Footer = () => {
         <div>
           <Logo />
         </div>
-        <div className='border-solid border-x-2 border-white/10'></div>
+        <div className=' border-x-2 border-white/10'></div>
         <div></div>
       </div>
       <div className='flex justify-center p-2'>
