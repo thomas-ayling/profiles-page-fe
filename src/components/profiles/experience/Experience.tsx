@@ -24,17 +24,31 @@ const Experience = () => {
       \n- Currently working on desiging a site for EVeryYouth, a charity focused on helping homeless yound people get back on their feet.`,
       technologies: ['Java', 'Spring', 'MyBatis', 'PostgreSql', 'Typescript', 'React', 'TailwindCss'],
     },
+    {
+      company: 'QA Ltd, Manchester, UK',
+      title: 'Trainee Consultant',
+      timeline: 'Apr 22 - Present',
+      summary: `- Graduated from 3 month training pathway.  
+      \n- Worked in an agile team to create a full stack website for the Engineering center.
+      \n- Supported the team and collaborated with others in the company to achieve our goals and meet deadlines.
+      \n- Currently working on desiging a site for EVeryYouth, a charity focused on helping homeless yound people get back on their feet.`,
+      technologies: ['Java', 'Spring', 'MyBatis', 'PostgreSql', 'Typescript', 'React', 'TailwindCss'],
+    },
   ];
 
   return (
     <div>
       <ProfileSection title='Experience'>
-      {experienceData.map((data) => (
-        <ExperienceBlock data={data} />
-      ))}
+        {experienceData.map((data, index) => {
+          const className = index === 0 ? '-mt-5' : index === experienceData.length - 1 ? '-mb-5' : '';
+          return (
+            <div className={className}>
+              <ExperienceBlock data={data} />
+            </div>
+          );
+        })}
       </ProfileSection>
     </div>
-    
   );
 };
 
